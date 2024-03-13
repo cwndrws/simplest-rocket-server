@@ -1,13 +1,13 @@
-#![feature(proc_macro_hygiene, decl_macro)]
+#![feature(decl_macro)]
 
-#[macro_use]
-extern crate rocket;
+use rocket::*;
 
 #[get("/")]
 fn index() -> &'static str {
     "Byebye, world!"
 }
 
-fn main() {
-    rocket::ignite().mount("/", routes![index]).launch();
+#[launch]
+fn rocket() -> _ {
+    rocket::build().mount("/", routes![index])
 }
