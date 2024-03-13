@@ -1,12 +1,13 @@
 #![feature(decl_macro)]
 
-use rocket::get;
+use rocket::*;
 
 #[get("/")]
 fn index() -> &'static str {
     "Byebye, world!"
 }
 
-fn main() {
-    rocket::build().mount("/", routes![index]).launch();
+#[launch]
+fn rocket() -> _ {
+    rocket::build().mount("/", routes![index])
 }
