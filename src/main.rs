@@ -1,7 +1,6 @@
-#![feature(proc_macro_hygiene, decl_macro)]
+#![feature(decl_macro)]
 
-#[macro_use]
-extern crate rocket;
+use rocket::get;
 
 #[get("/")]
 fn index() -> &'static str {
@@ -9,5 +8,5 @@ fn index() -> &'static str {
 }
 
 fn main() {
-    rocket::ignite().mount("/", routes![index]).launch();
+    rocket::build().mount("/", routes![index]).launch();
 }
